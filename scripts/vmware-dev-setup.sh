@@ -39,7 +39,7 @@ check_system_requirements() {
     
     # 检查内存
     total_mem=$(free -g | awk '/^Mem:/{print $2}')
-    if [ "$total_mem" -lt 8 ]; then
+    if [ -n "$total_mem" ] && [ "$total_mem" -lt 8 ]; then
         log_warning "推荐至少8GB内存，当前: ${total_mem}GB"
     fi
     
@@ -62,10 +62,10 @@ update_system() {
     # 安装基础依赖
     apt install -y \
         build-essential \
-        python3.11 \
-        python3.11-pip \
-        python3.11-venv \
-        python3.11-dev \
+        python3 \
+        python3-pip \
+        python3-venv \
+        python3-dev \
         nodejs \
         npm \
         git \
@@ -159,7 +159,7 @@ setup_sonjayos_project() {
     # 创建Python虚拟环境
     if [ ! -d "venv" ]; then
         log_info "创建Python虚拟环境..."
-        python3.11 -m venv venv
+        python3 -m venv venv
     fi
     
     # 激活虚拟环境并安装依赖
