@@ -1,0 +1,130 @@
+{
+  "system": {
+    "name": "SonjayOS",
+    "version": "1.0.0",
+    "base": "Ubuntu 24.04 LTS",
+    "kernel": "6.8+",
+    "architecture": "x86_64"
+  },
+  "hardware": {
+    "target_cpu": "AMD Ryzen 7 8845H",
+    "target_gpu": "Radeon 780M",
+    "min_ram": "16GB",
+    "recommended_ram": "32GB",
+    "min_storage": "100GB",
+    "recommended_storage": "500GB"
+  },
+  "ai": {
+    "primary_model": "llama3.1:8b",
+    "secondary_models": [
+      "llama3.1:70b",
+      "whisper:base",
+      "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    ],
+    "ollama": {
+      "host": "localhost",
+      "port": 11434,
+      "timeout": 60
+    },
+    "whisper": {
+      "model_size": "base",
+      "language": "zh",
+      "device": "auto"
+    },
+    "embeddings": {
+      "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "batch_size": 32,
+      "max_length": 512
+    }
+  },
+  "ui": {
+    "desktop_environment": "GNOME",
+    "shell_version": "44+",
+    "extensions": [
+      "sonjayos-ai-assistant@sonjayos.com"
+    ],
+    "themes": {
+      "light_work": {
+        "background": "#FFFFFF",
+        "accent_color": "#2196F3",
+        "text_color": "#212121"
+      },
+      "dark_work": {
+        "background": "#1E1E1E",
+        "accent_color": "#64B5F6",
+        "text_color": "#FFFFFF"
+      },
+      "coding": {
+        "background": "#0D1117",
+        "accent_color": "#58A6FF",
+        "text_color": "#F0F6FC"
+      }
+    }
+  },
+  "security": {
+    "threat_detection": {
+      "enabled": true,
+      "cpu_threshold": 80.0,
+      "memory_threshold": 85.0,
+      "network_threshold": 1000
+    },
+    "encryption": {
+      "enabled": true,
+      "algorithm": "AES-256",
+      "key_rotation_days": 30
+    },
+    "monitoring": {
+      "check_interval": 30,
+      "log_retention_days": 30
+    }
+  },
+  "performance": {
+    "scheduler": {
+      "enabled": true,
+      "check_interval": 5,
+      "learning_enabled": true
+    },
+    "optimization": {
+      "cpu_boost_threshold": 0.8,
+      "memory_boost_threshold": 0.85,
+      "priority_boost_factor": 1.5
+    }
+  },
+  "services": {
+    "ai_service": {
+      "enabled": true,
+      "port": 8000,
+      "workers": 4
+    },
+    "ui_service": {
+      "enabled": true,
+      "port": 8001,
+      "workers": 2
+    },
+    "security_service": {
+      "enabled": true,
+      "port": 8002,
+      "workers": 2
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "/var/log/sonjayos/sonjayos.log",
+    "max_size": "100MB",
+    "backup_count": 5
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "/var/lib/sonjayos/sonjayos.db",
+    "backup_interval": "daily"
+  },
+  "network": {
+    "api_port": 8000,
+    "websocket_port": 8001,
+    "ollama_port": 11434,
+    "firewall": {
+      "enabled": true,
+      "allowed_ports": [22, 80, 443, 8000, 8001, 8002, 11434]
+    }
+  }
+}

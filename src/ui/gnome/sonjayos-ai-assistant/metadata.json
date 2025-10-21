@@ -1,0 +1,10 @@
+{
+    "uuid": "sonjayos-ai-assistant@sonjayos.com",
+    "name": "SonjayOS AI助手",
+    "description": "智能AI助手，提供语音和文本交互功能",
+    "version": 1,
+    "shell-version": ["44", "45", "46"],
+    "url": "https://github.com/sonjayos/sonjayos",
+    "settings-schema": "org.gnome.shell.extensions.sonjayos-ai-assistant",
+    "gettext-domain": "sonjayos-ai-assistant"
+}

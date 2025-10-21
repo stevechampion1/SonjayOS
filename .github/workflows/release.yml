@@ -1,0 +1,95 @@
+name: SonjayOS Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    
+    - name: Set up Node.js 18
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install build twine
+        npm install
+    
+    - name: Build Python package
+      run: |
+        python -m build
+    
+    - name: Build Node.js package
+      run: |
+        npm run build
+    
+    - name: Build ISO image
+      run: |
+        chmod +x tools/iso-builder/build-iso.sh
+        ./tools/iso-builder/build-iso.sh
+    
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          ## SonjayOS ${{ github.ref }}
+          
+          ### 新功能
+          - AI驱动的智能助手
+          - 自然语言语音交互
+          - 语义文件搜索
+          - 自适应用户界面
+          - AI安全威胁检测
+          
+          ### 安装
+          1. 下载ISO镜像
+          2. 创建可启动USB驱动器
+          3. 从USB启动并安装
+          
+          ### 系统要求
+          - AMD Ryzen 7 8845H或更高
+          - 32GB RAM (推荐)
+          - 500GB存储空间
+          - Radeon 780M或更高显卡
+        draft: false
+        prerelease: false
+    
+    - name: Upload ISO
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./SonjayOS-1.0.0.iso
+        asset_name: SonjayOS-1.0.0.iso
+        asset_content_type: application/octet-stream
+    
+    - name: Upload Python Package
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/
+        asset_name: sonjayos-python-package.zip
+        asset_content_type: application/zip
