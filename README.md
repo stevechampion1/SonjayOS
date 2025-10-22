@@ -29,6 +29,15 @@ SonjayOS是一个基于Ubuntu 24.04 LTS构建的自定义AI集成操作系统，
 - **中间件**: 基于Python的AI-OS集成
 - **前端**: 带有自定义扩展的GNOME桌面
 
+## 硬件优化
+SonjayOS针对AMD Ryzen 7 8845H和Radeon 780M进行了深度优化：
+- **ROCm支持**: 完整的AMD GPU加速支持
+- **性能调优**: CPU和GPU性能优化配置
+- **AI加速**: 针对Llama 3.1、Whisper等模型的GPU加速
+- **监控系统**: 实时性能监控和优化建议
+
+详细硬件优化指南请参见 `docs/硬件优化指南.md`
+
 ## 开发
 详细开发设置和贡献指南请参见 `docs/development.md`
 

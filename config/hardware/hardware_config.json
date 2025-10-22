@@ -1,0 +1,91 @@
+{
+    "system": {
+        "cpu": {
+            "vendor": "AMD",
+            "model": "Ryzen 7 8845H",
+            "cores": 8,
+            "threads": 16,
+            "base_clock": "3.8 GHz",
+            "boost_clock": "5.1 GHz",
+            "cache": "24 MB",
+            "tdp": "45W"
+        },
+        "gpu": {
+            "vendor": "AMD",
+            "model": "Radeon 780M",
+            "architecture": "RDNA 3",
+            "compute_units": 12,
+            "memory": "共享系统内存",
+            "memory_bandwidth": "最高68.3 GB/s",
+            "rocm_support": true
+        },
+        "memory": {
+            "total": "32 GB",
+            "available": "27.8 GB",
+            "type": "DDR5",
+            "speed": "5600 MHz"
+        }
+    },
+    "optimization": {
+        "cpu": {
+            "governor": "performance",
+            "boost_enabled": true,
+            "thermal_throttling": false,
+            "power_limit": "45W"
+        },
+        "gpu": {
+            "power_profile": "performance",
+            "memory_clock": "最高",
+            "core_clock": "最高",
+            "fan_curve": "aggressive"
+        },
+        "rocm": {
+            "version": "5.7",
+            "hip_platform": "amd",
+            "gfx_version": "10.3.0",
+            "memory_pool": true,
+            "unified_memory": true
+        }
+    },
+    "ai_models": {
+        "llama": {
+            "model_size": "8B",
+            "memory_requirement": "16GB",
+            "gpu_acceleration": true,
+            "rocm_optimization": true,
+            "mixed_precision": true,
+            "batch_size": 1,
+            "max_sequence_length": 2048
+        },
+        "whisper": {
+            "model_size": "base",
+            "memory_requirement": "1GB",
+            "gpu_acceleration": true,
+            "rocm_optimization": true,
+            "real_time_processing": true
+        },
+        "embeddings": {
+            "model_name": "paraphrase-multilingual-MiniLM-L12-v2",
+            "memory_requirement": "500MB",
+            "gpu_acceleration": true,
+            "rocm_optimization": true,
+            "batch_processing": true
+        }
+    },
+    "performance_targets": {
+        "boot_time": "< 30s",
+        "ai_inference_latency": "< 1s",
+        "idle_cpu_usage": "< 20%",
+        "idle_memory_usage": "< 20%",
+        "gpu_utilization": "> 80%",
+        "thermal_throttling": false
+    },
+    "monitoring": {
+        "cpu_temperature": true,
+        "gpu_temperature": true,
+        "memory_usage": true,
+        "gpu_utilization": true,
+        "power_consumption": true,
+        "thermal_throttling": true
+    }
+}
