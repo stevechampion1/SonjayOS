@@ -1,14 +1,15 @@
 @echo off
+chcp 65001 >nul
 REM SonjayOS ISO构建脚本 - Windows版本
 REM 用于在Windows环境中构建SonjayOS自定义ISO
 
 echo ==========================================
-echo SonjayOS 自定义ISO构建器 - Windows版本
+echo SonjayOS Custom ISO Builder - Windows Version
 echo ==========================================
 echo.
 
 REM 检查必要工具
-echo 检查构建依赖...
+echo Checking build dependencies...
 where 7z >nul 2>&1
 if %errorlevel% neq 0 (
     echo 错误: 7-Zip未安装，请先安装7-Zip
